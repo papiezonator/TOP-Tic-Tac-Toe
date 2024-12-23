@@ -16,3 +16,22 @@ function gameBoard() {
     }
     console.log(board);
 }
+
+function gameStatus(){
+    for(let i = 0; i < board.length; i++){
+        console.log(board[i]);
+        for(let j = 0; j < board[i].length; j++){
+            console.log(board[i][j]);
+        }
+    }
+}
+
+const playerOne = {
+    name: "tim",
+    mark: "x"
+};
+
+const playerTwo = {
+    name: "jenn",
+    mark: "o"
+}
