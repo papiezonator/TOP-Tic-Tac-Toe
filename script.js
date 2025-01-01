@@ -69,17 +69,48 @@ function gameplay(){
     while(state != "finished"){
     
         //rounds
-
+        let roundNumber = 0;
         rounds(firstPlayer);
         rounds(secondPlayer);
+        roundNumber++;
+        console.log(`Round number ${roundNumber} result:`);
+        gameStatus();
         state = 'finished';
         }
           
     }
 
     function rounds(currentPlayer){
-        let row = prompt(`${currentPlayer.name}, please choose a row`)
-        let column = prompt(`${currentPlayer.name}, please choose a column`)
+        
+        let row;
+        let column; 
+        let correctPosition;
+        while(correctPosition != true){
+            row = prompt(`${currentPlayer.name}, please choose a row`);
+            column = prompt(`${currentPlayer.name}, please choose a column`);
+            if(board[row-1][column-1] != ''){
+                console.log("This spot is already marked, please choose a different one");
+                gameStatus();
+                correctPosition = false;
+            } else {
+                correctPosition = true;
+            }
+        }
         board[row-1].splice(column-1, 1, currentPlayer.mark);
-        gameStatus()
+        gameStatus();
+        /*if(board[row-1][column-1] != ''){
+            console.log("This spot is already marked, please choose a different one");
+                gameStatus();
+            while(board[row-1][column-1] != ''){
+                row = prompt(`${currentPlayer.name}, please choose a row`);
+                column = prompt(`${currentPlayer.name}, please choose a column`);
+                console.log("This spot is already marked, please choose a different one");
+                gameStatus();
+            }
+            board[row-1].splice(column-1, 1, currentPlayer.mark);
+        } else {
+            board[row-1].splice(column-1, 1, currentPlayer.mark);
+        }*/
+        
+        
     }
