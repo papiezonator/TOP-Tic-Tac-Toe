@@ -98,19 +98,6 @@ function gameplay(){
         }
         board[row-1].splice(column-1, 1, currentPlayer.mark);
         gameStatus();
-        /*if(board[row-1][column-1] != ''){
-            console.log("This spot is already marked, please choose a different one");
-                gameStatus();
-            while(board[row-1][column-1] != ''){
-                row = prompt(`${currentPlayer.name}, please choose a row`);
-                column = prompt(`${currentPlayer.name}, please choose a column`);
-                console.log("This spot is already marked, please choose a different one");
-                gameStatus();
-            }
-            board[row-1].splice(column-1, 1, currentPlayer.mark);
-        } else {
-            board[row-1].splice(column-1, 1, currentPlayer.mark);
-        }*/
         
         
     }
