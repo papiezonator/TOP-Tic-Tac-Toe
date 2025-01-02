@@ -1,30 +1,43 @@
 
 //creating gameboard
 
+document.body.onload = gameBoard;
+
 let board = [];
 
 function gameBoard() {
+    //used variables
+    const div = document.createElement("div");
+    const table = document.createElement("table");
+    
+    
     let rows = 3
     let columns = 3
     
+    div.appendChild(table);
+    document.body.appendChild(div);
 
     for(let i = 0; i < rows; i++){
         board[i] = [];
+        const tr = document.createElement("tr");
         for(let j = 0; j < columns; j++){
             board[i].push('');
+            const th = document.createElement("th");
+            tr.appendChild(th);
+            
         }
+        
+        table.appendChild(tr);
     }
     console.log(board);
 }
+
 
 //checking game's status
 
 function gameStatus(){
     for(let i = 0; i < board.length; i++){
         console.log(board[i]);
-        /*for(let j = 0; j < board[i].length; j++){
-            console.log(board[i][j]);
-        }*/
     }
 }
 
@@ -75,6 +88,7 @@ function gameplay(){
         roundNumber++;
         console.log(`Round number ${roundNumber} result:`);
         gameStatus();
+
         state = 'finished';
         }
           
@@ -96,8 +110,11 @@ function gameplay(){
                 correctPosition = true;
             }
         }
+        
         board[row-1].splice(column-1, 1, currentPlayer.mark);
         gameStatus();
-        
+        console.log("");
         
     }
+
+    
