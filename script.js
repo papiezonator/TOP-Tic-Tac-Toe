@@ -21,12 +21,11 @@ function gameBoard() {
         board[i] = [];
         const tr = document.createElement("tr");
         for(let j = 0; j < columns; j++){
-            board[i].push('');
+            board[i].push('x');
             const th = document.createElement("th");
             tr.appendChild(th);
-            
+            th.innerHTML = board[i][j];
         }
-        
         table.appendChild(tr);
     }
     console.log(board);
