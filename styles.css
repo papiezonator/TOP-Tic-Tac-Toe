@@ -1,0 +1,10 @@
+.item {
+    padding: 10vh;
+    font-size: 5em;
+    letter-spacing: 0px;
+}
+
+
+.mainTable, .row, .item {
+    border: 1px solid;
+}
