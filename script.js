@@ -15,18 +15,22 @@ function gameBoard() {
     let columns = 3
     
     div.appendChild(table);
+    div.className = "tableWrapper";
     document.body.appendChild(div);
 
     for(let i = 0; i < rows; i++){
         board[i] = [];
         const tr = document.createElement("tr");
+        tr.className = "row";
         for(let j = 0; j < columns; j++){
-            board[i].push('x');
+            board[i].push('X');
             const th = document.createElement("th");
             tr.appendChild(th);
             th.innerHTML = board[i][j];
+            th.className = "item"
         }
         table.appendChild(tr);
+        table.className = "mainTable";
     }
     console.log(board);
 }
