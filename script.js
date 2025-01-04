@@ -29,7 +29,7 @@ function gameBoard() {
             board[i].push('');
             const th = document.createElement("th");
             tr.appendChild(th);
-            tr.className = "ItemWrapper";
+            tr.className = "itemWrapper";
             th.innerHTML = board[i][j];
             th.className = "item";
             
@@ -84,11 +84,12 @@ function gameplay(){
         items[i].addEventListener('click', () => {
             function marker(firstPlayer, secondPlayer){
                 
-                if(currentPlayer === 0 && items[i].innerHTML != 'o' ){
-                    items[i].innerHTML = firstPlayer.mark;
+                if(currentPlayer === 0 && items[i].innerHTML != 'O' ){
+                    items[i].innerHTML = firstPlayer.mark.toUpperCase();
+                    console.log(board[i])
                     currentPlayer++
-                } else if (currentPlayer === 1 && items[i].innerHTML != 'x'){
-                    items[i].innerHTML = secondPlayer.mark
+                } else if (currentPlayer === 1 && items[i].innerHTML != 'X'){
+                    items[i].innerHTML = secondPlayer.mark.toUpperCase();
                     currentPlayer--
                 }
                 
