@@ -1,6 +1,7 @@
 .item {
-    padding: 10vh;
-    font-size: 5em;
+    height: 25vh;
+    width: 25vh;
+    font-size: 10rem;
     letter-spacing: 0px;
 }
 
