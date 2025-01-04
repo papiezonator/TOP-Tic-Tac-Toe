@@ -25,10 +25,8 @@ function gameBoard() {
         board[i] = [];
         const tr = document.createElement("tr");
         tr.className = "row";
-        let test = 0;
         for(let j = 0; j < columns; j++){
-            test++
-            board[i].push(test);
+            board[i].push('');
             const th = document.createElement("th");
             tr.appendChild(th);
             tr.className = "ItemWrapper";
@@ -69,6 +67,7 @@ const playerTwo = {
 
 
 function gameplay(){
+    let currentPlayer = 0;
     let div = document.createElement("div");
     let h1 = document.createElement("h1");
     let tableWrapper = document.querySelector(".tableWrapper");
@@ -83,8 +82,19 @@ function gameplay(){
     let items = document.querySelectorAll(".item");
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
-            console.log(items[i].innerHTML);
-            console.log(`${playerOne.mark}, ${playerTwo.mark}`)
+            function marker(firstPlayer, secondPlayer){
+                
+                if(currentPlayer === 0 && items[i].innerHTML != 'o' ){
+                    items[i].innerHTML = firstPlayer.mark;
+                    currentPlayer++
+                } else if (currentPlayer === 1 && items[i].innerHTML != 'x'){
+                    items[i].innerHTML = secondPlayer.mark
+                    currentPlayer--
+                }
+                
+            }        
+            
+            marker(firstPlayer, secondPlayer);
         })
     }
     
