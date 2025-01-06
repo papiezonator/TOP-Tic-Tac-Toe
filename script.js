@@ -66,99 +66,48 @@ const playerTwo = {
 };
 
 
+
 function gameplay(){
     let currentPlayer = 0;
     let div = document.createElement("div");
     let h1 = document.createElement("h1");
-    let tableWrapper = document.querySelector(".tableWrapper");
     div.appendChild(h1);
     div.className = "welcomeMessage";
     document.body.insertAdjacentElement("beforebegin", div);
-    
     let firstPlayer = playerOne;
     let secondPlayer = playerTwo;
     h1.innerHTML = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
-
     let items = document.querySelectorAll(".item");
+    
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
+            function test(currentPlayer){
+                let itemWrapper = document.querySelectorAll(".itemWrapper");
+                for(let x = 0; x < itemWrapper.length; x++){
+                        for(let j = 0; j < itemWrapper[x].children.length ; j++){
+                        let childrenArray = Array.from(itemWrapper[x].children);    
+                        board[x][j] = childrenArray[j].innerHTML;
+                    }   
+                } 
+                console.log(board);  
+            }
+
             function marker(firstPlayer, secondPlayer){
-                
                 if(currentPlayer === 0 && items[i].innerHTML != 'O' ){
                     items[i].innerHTML = firstPlayer.mark.toUpperCase();
-                    console.log(board[i])
+                    //console.log(itemWrapper[i].children)
+                    test(firstPlayer);
                     currentPlayer++
                 } else if (currentPlayer === 1 && items[i].innerHTML != 'X'){
                     items[i].innerHTML = secondPlayer.mark.toUpperCase();
+                    //test(secondPlayer);
+                    test(secondPlayer);
                     currentPlayer--
                 }
-                
             }        
-            
             marker(firstPlayer, secondPlayer);
         })
     }
-    
-
-    /*let state;
-    let row1 = board[0];
-    let row2 = board[1];
-    let row3 = board[2];
-    
-    //choosing the starting player
-
-    while(firstPlayer != playerOne.name && firstPlayer != playerTwo.name){
-        firstPlayer = prompt("Who will start the game?");  
-    }
-    if(firstPlayer === playerOne.name){
-        firstPlayer = playerOne;
-        secondPlayer = playerTwo;
-    } else {
-        firstPlayer = playerTwo;
-        secondPlayer = playerOne;
-    }
-
-    console.log(`The first player is: ${firstPlayer.name}, the second one: ${secondPlayer.name}. Enjoy your game!`);
-    console.log(`Your marks are: ${firstPlayer.name}, ${firstPlayer.mark} and ${secondPlayer.name}, ${secondPlayer.mark}`);
-    
-    //the actual gameplay
-
-    while(state != "finished"){
-    
-        //rounds
-        let roundNumber = 0;
-        rounds(firstPlayer);
-        rounds(secondPlayer);
-        roundNumber++;
-        console.log(`Round number ${roundNumber} result:`);
-        gameStatus();
-
-        state = 'finished';
-        }*/
-          
-    /*}
-    
-    function rounds(currentPlayer){
-        
-        let row;
-        let column; 
-        let correctPosition;
-        while(correctPosition != true){
-            row = prompt(`${currentPlayer.name}, please choose a row`);
-            column = prompt(`${currentPlayer.name}, please choose a column`);
-            if(board[row-1][column-1] != ''){
-                console.log("This spot is already marked, please choose a different one");
-                gameStatus();
-                correctPosition = false;
-            } else {
-                correctPosition = true;
-            }
-        }
-        
-        board[row-1].splice(column-1, 1, currentPlayer.mark);
-        gameStatus();
-        console.log("");
-    */ 
 }
 
     
