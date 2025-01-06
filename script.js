@@ -45,14 +45,6 @@ function gameBoard() {
 }
 
 
-//checking game's status
-
-function gameStatus(){
-    for(let i = 0; i < board.length; i++){
-        console.log(board[i]);
-    }
-}
-
 //player variables
 
 const playerOne = {
@@ -64,7 +56,6 @@ const playerTwo = {
     name: "jenn",
     mark: "o"
 };
-
 
 
 function gameplay(){
@@ -89,18 +80,15 @@ function gameplay(){
                         board[x][j] = childrenArray[j].innerHTML;
                     }   
                 } 
-                console.log(board);  
             }
 
             function marker(firstPlayer, secondPlayer){
                 if(currentPlayer === 0 && items[i].innerHTML != 'O' ){
                     items[i].innerHTML = firstPlayer.mark.toUpperCase();
-                    //console.log(itemWrapper[i].children)
                     test(firstPlayer);
                     currentPlayer++
                 } else if (currentPlayer === 1 && items[i].innerHTML != 'X'){
                     items[i].innerHTML = secondPlayer.mark.toUpperCase();
-                    //test(secondPlayer);
                     test(secondPlayer);
                     currentPlayer--
                 }
