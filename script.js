@@ -59,20 +59,22 @@ const playerTwo = {
 
 
 function gameplay(){
+    //creating the welcoming message
     let currentPlayer = 0;
-    let div = document.createElement("div");
+    let welcomeDiv = document.createElement("div");
     let h1 = document.createElement("h1");
-    div.appendChild(h1);
-    div.className = "welcomeMessage";
-    document.body.insertAdjacentElement("beforebegin", div);
+    welcomeDiv.appendChild(h1);
+    welcomeDiv.className = "welcomeMessage";
+    document.body.appendChild(welcomeDiv);
     let firstPlayer = playerOne;
     let secondPlayer = playerTwo;
     h1.innerHTML = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
     let items = document.querySelectorAll(".item");
-    
+    //the actual gameplay
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
-            function test(currentPlayer){
+            //adding the clicked element to the board array
+            function boardPush(){
                 let itemWrapper = document.querySelectorAll(".itemWrapper");
                 for(let x = 0; x < itemWrapper.length; x++){
                         for(let j = 0; j < itemWrapper[x].children.length ; j++){
@@ -81,15 +83,15 @@ function gameplay(){
                     }   
                 } 
             }
-
+            //adding the players marker to the table elements
             function marker(firstPlayer, secondPlayer){
                 if(currentPlayer === 0 && items[i].innerHTML != 'O' ){
                     items[i].innerHTML = firstPlayer.mark.toUpperCase();
-                    test(firstPlayer);
+                    boardPush();
                     currentPlayer++
                 } else if (currentPlayer === 1 && items[i].innerHTML != 'X'){
                     items[i].innerHTML = secondPlayer.mark.toUpperCase();
-                    test(secondPlayer);
+                    boardPush();
                     currentPlayer--
                 }
             }        
