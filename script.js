@@ -24,7 +24,6 @@ function gameBoard() {
     for(let i = 0; i < rows; i++){
         board[i] = [];
         const tr = document.createElement("tr");
-        tr.className = "row";
         for(let j = 0; j < columns; j++){
             board[i].push('');
             const th = document.createElement("th");
@@ -60,17 +59,18 @@ const playerTwo = {
 
 function gameplay(){
     //creating the welcoming message
-    let currentPlayer = 0;
     let welcomeDiv = document.createElement("div");
     let h1 = document.createElement("h1");
     welcomeDiv.appendChild(h1);
     welcomeDiv.className = "welcomeMessage";
     document.body.appendChild(welcomeDiv);
-    let firstPlayer = playerOne;
-    let secondPlayer = playerTwo;
     h1.innerHTML = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
-    let items = document.querySelectorAll(".item");
     //the actual gameplay
+    let firstPlayer = playerOne;    
+    let secondPlayer = playerTwo;
+    let roundCheck = 0;
+    let items = document.querySelectorAll(".item");
+
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
             //adding the clicked element to the board array
@@ -85,14 +85,16 @@ function gameplay(){
             }
             //adding the players marker to the table elements
             function marker(firstPlayer, secondPlayer){
-                if(currentPlayer === 0 && items[i].innerHTML != 'O' ){
+                if(roundCheck === 0 && items[i].innerHTML != 'O' ){
                     items[i].innerHTML = firstPlayer.mark.toUpperCase();
                     boardPush();
-                    currentPlayer++
-                } else if (currentPlayer === 1 && items[i].innerHTML != 'X'){
+                    gameWin(firstPlayer);
+                    roundCheck++
+                } else if (roundCheck === 1 && items[i].innerHTML != 'X'){
                     items[i].innerHTML = secondPlayer.mark.toUpperCase();
                     boardPush();
-                    currentPlayer--
+                    gameWin(secondPlayer);
+                    roundCheck--
                 }
             }        
             marker(firstPlayer, secondPlayer);
@@ -100,4 +102,42 @@ function gameplay(){
     }
 }
 
+function gameWin(){
+    //possible winning combinations
     
+    let arr = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+        [0, 3 ,6],
+        [1, 4 ,7],
+        [2, 5, 8]
+    ]
+
+    //row/column array made into a single one 
+    const winArray = []
+    const arrayPush = (() => {
+        board.forEach((arrayRow) => {
+            arrayRow.forEach((item) => {
+                winArray.push(item);
+            })
+        })
+    })
+
+    arrayPush();
+    const winCheck = (() =>{
+        for(let j = 0; j < arr.length; j++){
+            let test = []
+            for(let i = 0; i < 3; i++){
+                    let g = []
+                    //console.log(winArray[arr[j][i]])
+                    test.push(winArray[arr[j][i]])
+                
+            }
+                    console.log(test)
+            }   
+    })
+    winCheck();
+}
