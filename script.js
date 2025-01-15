@@ -88,21 +88,22 @@ function gameplay(){
                 if(roundCheck === 0 && items[i].innerHTML != 'O' ){
                     items[i].innerHTML = firstPlayer.mark.toUpperCase();
                     boardPush();
-                    gameWin(firstPlayer);
+                    //gameWin(firstPlayer);
                     roundCheck++
                 } else if (roundCheck === 1 && items[i].innerHTML != 'X'){
                     items[i].innerHTML = secondPlayer.mark.toUpperCase();
                     boardPush();
-                    gameWin(secondPlayer);
+                    //gameWin(secondPlayer);
                     roundCheck--
                 }
             }        
             marker(firstPlayer, secondPlayer);
+            gameWin(firstPlayer, secondPlayer);
         })
     }
 }
 
-function gameWin(){
+function gameWin(firstPlayer, secondPlayer){
     //possible winning combinations
     
     let arr = [
@@ -124,20 +125,25 @@ function gameWin(){
                 winArray.push(item);
             })
         })
-    })
+    }) 
 
     arrayPush();
     const winCheck = (() =>{
         for(let j = 0; j < arr.length; j++){
             let test = []
             for(let i = 0; i < 3; i++){
-                    let g = []
-                    //console.log(winArray[arr[j][i]])
-                    test.push(winArray[arr[j][i]])
-                
+                //console.log(winArray[arr[j][i]])
+                test.push(winArray[arr[j][i]])   
             }
-                    console.log(test)
+            /*console.log(test);
+            console.log(test.includes(firstPlayer.mark.toUpperCase()));
+            console.log(!test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(''));*/
+            if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
+                console.log(`Congratulations ${firstPlayer.name}, you won!`);
+            } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
+                console.log(`Congratulations ${secondPlayer.name}, you won!`); 
             }   
+        }   
     })
     winCheck();
 }
