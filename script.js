@@ -89,12 +89,10 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
                 if(roundCheck === 0 && items[i].textContent != 'O' && gamestatus.state != "end" ){
                     items[i].textContent = firstPlayer.mark.toUpperCase();
                     boardPush();
-                    //gameWin(firstPlayer);
                     roundCheck++
                 } else if (roundCheck === 1 && items[i].textContent != 'X' && gamestatus.state != "end"){
                     items[i].textContent = secondPlayer.mark.toUpperCase();
                     boardPush();
-                    //gameWin(secondPlayer);
                     roundCheck--
                     console.log(gamestatus.state);
                 } else if (gamestatus.state === "end"){
@@ -103,8 +101,6 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
             }        
             marker(firstPlayer, secondPlayer);
             gameWin(firstPlayer, secondPlayer, gamestatus);
-            //console.log(`ending ${gamestatus}`);
-            //gamestatus = "end";
         })
     }
     return;
@@ -139,12 +135,8 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
             for(let j = 0; j < arr.length; j++){
                 let test = []
                 for(let i = 0; i < 3; i++){
-                    //console.log(winArray[arr[j][i]])
                     test.push(winArray[arr[j][i]])   
-                }
-                /*console.log(test);
-                console.log(test.includes(firstPlayer.mark.toUpperCase()));
-                console.log(!test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(''));*/
+                } 
                 if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
                     console.log(`Congratulations ${firstPlayer.name}, you won!`);
                     gamestatus.state = "end";
@@ -156,7 +148,6 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                 }   
             }    
         })
-        //console.log(gamestatus);
         winCheck();
         return;
     }
