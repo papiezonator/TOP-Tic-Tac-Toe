@@ -1,7 +1,7 @@
 
 //creating gameboard
 
-document.body.onload = gameBoard;
+window.addEventListener('load', gameBoard);
 
 
 let board = [];
@@ -10,7 +10,6 @@ function gameBoard() {
     //used variables
     const div = document.createElement("div");
     const table = document.createElement("table");
-    
     
     let rows = 3
     let columns = 3
@@ -29,18 +28,15 @@ function gameBoard() {
             const th = document.createElement("th");
             tr.appendChild(th);
             tr.className = "itemWrapper";
-            th.innerHTML = board[i][j];
+            th.textContent = board[i][j];
             th.className = "item";
             
-            
-
         }
         
         table.appendChild(tr);
         table.className = "mainTable";
     }
     gameplay();
-    console.log(board);
 }
 
 
@@ -64,13 +60,18 @@ function gameplay(){
     welcomeDiv.appendChild(h1);
     welcomeDiv.className = "welcomeMessage";
     document.body.appendChild(welcomeDiv);
-    h1.innerHTML = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
-    //the actual gameplay
+    h1.textContent = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
     let firstPlayer = playerOne;    
     let secondPlayer = playerTwo;
+    let gamestatus = { state: "ongoing"};
+    //the actual gameplay
+    playRound(firstPlayer, secondPlayer, gamestatus);
+        
+}
+
+function playRound(firstPlayer, secondPlayer, gamestatus){
     let roundCheck = 0;
     let items = document.querySelectorAll(".item");
-
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
             //adding the clicked element to the board array
@@ -79,71 +80,84 @@ function gameplay(){
                 for(let x = 0; x < itemWrapper.length; x++){
                         for(let j = 0; j < itemWrapper[x].children.length ; j++){
                         let childrenArray = Array.from(itemWrapper[x].children);    
-                        board[x][j] = childrenArray[j].innerHTML;
+                        board[x][j] = childrenArray[j].textContent;
                     }   
                 } 
             }
             //adding the players marker to the table elements
             function marker(firstPlayer, secondPlayer){
-                if(roundCheck === 0 && items[i].innerHTML != 'O' ){
-                    items[i].innerHTML = firstPlayer.mark.toUpperCase();
+                if(roundCheck === 0 && items[i].textContent != 'O' && gamestatus.state != "end" ){
+                    items[i].textContent = firstPlayer.mark.toUpperCase();
                     boardPush();
                     //gameWin(firstPlayer);
                     roundCheck++
-                } else if (roundCheck === 1 && items[i].innerHTML != 'X'){
-                    items[i].innerHTML = secondPlayer.mark.toUpperCase();
+                } else if (roundCheck === 1 && items[i].textContent != 'X' && gamestatus.state != "end"){
+                    items[i].textContent = secondPlayer.mark.toUpperCase();
                     boardPush();
                     //gameWin(secondPlayer);
                     roundCheck--
+                    console.log(gamestatus.state);
+                } else if (gamestatus.state === "end"){
+                    return;
                 }
             }        
             marker(firstPlayer, secondPlayer);
-            gameWin(firstPlayer, secondPlayer);
+            gameWin(firstPlayer, secondPlayer, gamestatus);
+            //console.log(`ending ${gamestatus}`);
+            //gamestatus = "end";
         })
     }
+    return;
 }
 
-function gameWin(firstPlayer, secondPlayer){
+function gameWin(firstPlayer, secondPlayer, gamestatus){
     //possible winning combinations
-    
-    let arr = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-        [0, 3 ,6],
-        [1, 4 ,7],
-        [2, 5, 8]
-    ]
+    if(gamestatus.state != "end"){
+        let arr = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+            [0, 3 ,6],
+            [1, 4 ,7],
+            [2, 5, 8]
+        ]
 
-    //row/column array made into a single one 
-    const winArray = []
-    const arrayPush = (() => {
-        board.forEach((arrayRow) => {
-            arrayRow.forEach((item) => {
-                winArray.push(item);
+        //row/column array made into a single one 
+        const winArray = []
+        const arrayPush = (() => {
+            board.forEach((arrayRow) => {
+                arrayRow.forEach((item) => {
+                    winArray.push(item);
+                })
             })
-        })
-    }) 
+        }) 
+        arrayPush();
 
-    arrayPush();
-    const winCheck = (() =>{
-        for(let j = 0; j < arr.length; j++){
-            let test = []
-            for(let i = 0; i < 3; i++){
-                //console.log(winArray[arr[j][i]])
-                test.push(winArray[arr[j][i]])   
-            }
-            /*console.log(test);
-            console.log(test.includes(firstPlayer.mark.toUpperCase()));
-            console.log(!test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(''));*/
-            if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
-                console.log(`Congratulations ${firstPlayer.name}, you won!`);
-            } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
-                console.log(`Congratulations ${secondPlayer.name}, you won!`); 
-            }   
-        }   
-    })
-    winCheck();
+        const winCheck = (() =>{
+            for(let j = 0; j < arr.length; j++){
+                let test = []
+                for(let i = 0; i < 3; i++){
+                    //console.log(winArray[arr[j][i]])
+                    test.push(winArray[arr[j][i]])   
+                }
+                /*console.log(test);
+                console.log(test.includes(firstPlayer.mark.toUpperCase()));
+                console.log(!test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(''));*/
+                if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
+                    console.log(`Congratulations ${firstPlayer.name}, you won!`);
+                    gamestatus.state = "end";
+                    return gamestatus.state;
+                } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
+                    console.log(`Congratulations ${secondPlayer.name}, you won!`); 
+                    gamestatus.state = "end";
+                    return gamestatus.state;
+                }   
+            }    
+        })
+        //console.log(gamestatus);
+        winCheck();
+        return;
+    }
 }
