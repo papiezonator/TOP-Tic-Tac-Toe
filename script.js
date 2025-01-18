@@ -63,7 +63,7 @@ function gameplay(){
     h1.textContent = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
     let firstPlayer = playerOne;    
     let secondPlayer = playerTwo;
-    let gamestatus = { state: "ongoing"};
+    let gamestatus = {state: "ongoing"};
     //the actual gameplay
     playRound(firstPlayer, secondPlayer, gamestatus);
         
@@ -94,7 +94,6 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
                     items[i].textContent = secondPlayer.mark.toUpperCase();
                     boardPush();
                     roundCheck--
-                    console.log(gamestatus.state);
                 } else if (gamestatus.state === "end"){
                     return;
                 }
