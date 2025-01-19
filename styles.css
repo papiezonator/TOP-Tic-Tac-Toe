@@ -9,3 +9,8 @@
 .mainTable, .row, .item {
     border: 1px solid;
 }
+
+body{
+    display: flex;
+    flex-direction: column-reverse;
+}
