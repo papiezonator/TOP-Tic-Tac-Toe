@@ -7,12 +7,14 @@ playerForm = document.querySelector("#playerForm");
 const createFirstP = (playerName) => {
     const name = playerName;
     const mark = "x";
-    return {name, mark};
+    const score = 0;
+    return {name, mark, score};
 }
 const createSecondP = (playerName) => {
     const name = playerName;
     const mark = "o";
-    return {name, mark};
+    const score = 0;
+    return {name, mark, score};
 }
 
 submitBtn.addEventListener("click", (event) => {
@@ -24,8 +26,8 @@ submitBtn.addEventListener("click", (event) => {
         const playerOne = createFirstP(firstInput.value)
         const playerTwo = createSecondP(secondInput.value)
         const div = document.createElement("div");
-    gameBoard(div, playerOne, playerTwo);
-    document.body.removeChild(playerForm);
+        gameBoard(div, playerOne, playerTwo);
+        document.body.removeChild(playerForm);
     } 
 })
 
@@ -152,11 +154,13 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                     test.push(winArray[arr[j][i]])   
                 } 
                 if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
-                    console.log(`Congratulations ${firstPlayer.name}, you won!`);
+                    firstPlayer.score++;
+                    console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
-                    console.log(`Congratulations ${secondPlayer.name}, you won!`); 
+                    console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
+                    secondPlayer.score++; 
                     gamestatus.state = "end";
                     return gamestatus.state;
                 }   
