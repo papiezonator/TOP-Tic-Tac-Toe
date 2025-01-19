@@ -1,14 +1,21 @@
 
 //creating gameboard
 
-window.addEventListener('load', gameBoard);
+submitBtn = document.querySelector("#submitBtn")
+
+submitBtn.addEventListener("click", () => {
+    const div = document.createElement("div");
+    gameBoard(div);
+    document.body.removeChild(submitBtn);
+})
+//window.addEventListener('load', gameBoard);
 
 
 let board = [];
 
-function gameBoard() {
+function gameBoard(div) {
     //used variables
-    const div = document.createElement("div");
+    //const div = document.createElement("div");
     const table = document.createElement("table");
     
     let rows = 3
@@ -51,6 +58,8 @@ const playerTwo = {
     name: "jenn",
     mark: "o"
 };
+
+
 
 
 function gameplay(){
