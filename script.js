@@ -4,6 +4,16 @@
 submitBtn = document.querySelector("#submitBtn");
 playerForm = document.querySelector("#playerForm");
 
+const createFirstP = (playerName) => {
+    const name = playerName;
+    const mark = "x";
+    return {name, mark};
+}
+const createSecondP = (playerName) => {
+    const name = playerName;
+    const mark = "o";
+    return {name, mark};
+}
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
@@ -11,17 +21,20 @@ submitBtn.addEventListener("click", (event) => {
     const secondInput = document.querySelector("#secondPlayer");
     
     if(firstInput.value != '' && secondInput.value != ''){
+        const playerOne = createFirstP(firstInput.value)
+        const playerTwo = createSecondP(secondInput.value)
         const div = document.createElement("div");
-    gameBoard(div);
+    gameBoard(div, playerOne, playerTwo);
     document.body.removeChild(playerForm);
     } 
 })
 
 
 
+
 let board = [];
 
-function gameBoard(div) {
+function gameBoard(div, playerOne, playerTwo) {
     //used variables
     //const div = document.createElement("div");
     const table = document.createElement("table");
@@ -51,26 +64,10 @@ function gameBoard(div) {
         table.appendChild(tr);
         table.className = "mainTable";
     }
-    gameplay();
+    gameplay(playerOne, playerTwo);
 }
 
-
-//player variables
-
-const playerOne = {
-    name: "tim",
-    mark: "x"
-};
-
-const playerTwo = {
-    name: "jenn",
-    mark: "o"
-};
-
-
-
-
-function gameplay(){
+function gameplay(playerOne, playerTwo){
     //creating the welcoming message
     let welcomeDiv = document.createElement("div");
     let h1 = document.createElement("h1");
@@ -91,6 +88,7 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
     let items = document.querySelectorAll(".item");
     for(let i = 0; i < items.length; i++){
         items[i].addEventListener('click', () => {
+
             //adding the clicked element to the board array
             function boardPush(){
                 let itemWrapper = document.querySelectorAll(".itemWrapper");
