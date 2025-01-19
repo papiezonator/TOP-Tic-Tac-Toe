@@ -1,14 +1,22 @@
 
 //creating gameboard
 
-submitBtn = document.querySelector("#submitBtn")
+submitBtn = document.querySelector("#submitBtn");
+playerForm = document.querySelector("#playerForm");
 
-submitBtn.addEventListener("click", () => {
-    const div = document.createElement("div");
+
+submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    const firstInput = document.querySelector("#firstPlayer");
+    const secondInput = document.querySelector("#secondPlayer");
+    
+    if(firstInput.value != '' && secondInput.value != ''){
+        const div = document.createElement("div");
     gameBoard(div);
-    document.body.removeChild(submitBtn);
+    document.body.removeChild(playerForm);
+    } 
 })
-//window.addEventListener('load', gameBoard);
+
 
 
 let board = [];
