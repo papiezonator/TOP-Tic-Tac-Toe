@@ -1,8 +1,8 @@
 
 //creating gameboard
 
-submitBtn = document.querySelector("#submitBtn");
-playerForm = document.querySelector("#playerForm");
+const submitBtn = document.querySelector("#submitBtn");
+const playerForm = document.querySelector("#playerForm");
 
 const createFirstP = (playerName) => {
     const name = playerName;
@@ -71,12 +71,12 @@ function gameBoard(div, playerOne, playerTwo) {
 
 function gameplay(playerOne, playerTwo){
     //creating the welcoming message
-    let welcomeDiv = document.createElement("div");
+    /*let welcomeDiv = document.createElement("div");
     let h1 = document.createElement("h1");
     welcomeDiv.appendChild(h1);
     welcomeDiv.className = "welcomeMessage";
     document.body.appendChild(welcomeDiv);
-    h1.textContent = `Welcome ${playerOne.name} and ${playerTwo.name}!`;
+    h1.textContent = `Welcome ${playerOne.name} and ${playerTwo.name}!`;*/
     let firstPlayer = playerOne;    
     let secondPlayer = playerTwo;
     let gamestatus = {state: "ongoing"};
