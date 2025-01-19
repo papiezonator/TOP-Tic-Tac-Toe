@@ -170,3 +170,20 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
         return;
     }
 }
+
+const endButtons = () => {
+    const div = document.createElement("div");
+    document.body.appendChild(div);
+    div.className = "endButtons";
+    for(let i = 0; i < 2; i++){
+        const btn = document.createElement("button");
+        div.appendChild(btn);
+        if(i != 1){
+            btn.textContent = "Play again"
+            btn.className = "playAgain"
+        } else {
+            btn.textContent = "Restart"
+            btn.className = "restart"
+        }
+    }
+}
