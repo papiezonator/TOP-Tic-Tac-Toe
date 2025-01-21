@@ -21,6 +21,7 @@ submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
     const firstInput = document.querySelector("#firstPlayer");
     const secondInput = document.querySelector("#secondPlayer");
+    const welcomeDiv = document.querySelector("#welcome");
     
     if(firstInput.value != '' && secondInput.value != ''){
         const playerOne = createFirstP(firstInput.value)
@@ -28,6 +29,8 @@ submitBtn.addEventListener("click", (event) => {
         const div = document.createElement("div");
         gameBoard(div, playerOne, playerTwo);
         document.body.removeChild(playerForm);
+        document.body.removeChild(welcomeDiv);
+
     } 
 })
 
