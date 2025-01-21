@@ -157,11 +157,13 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                     firstPlayer.score++;
                     console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
+                    endButtons();
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
                     console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     secondPlayer.score++; 
                     gamestatus.state = "end";
+                    endButtons();
                     return gamestatus.state;
                 }   
             }    
@@ -186,4 +188,16 @@ const endButtons = () => {
             btn.className = "restart"
         }
     }
+    buttonFunctionality();
+}
+
+const buttonFunctionality = () => {
+    const playAgBtn = document.querySelector(".playAgain");
+    playAgBtn.addEventListener("click", () => {
+        console.log(playAgBtn);
+    })
+    const restartBtn = document.querySelector(".restart");
+    restartBtn.addEventListener("click", () => {
+        console.log(restartBtn);
+    })
 }
