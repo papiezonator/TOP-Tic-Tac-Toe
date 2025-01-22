@@ -160,13 +160,13 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                     firstPlayer.score++;
                     console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
-                    endButtons();
+                    endButtons(firstPlayer, secondPlayer);
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
                     console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     secondPlayer.score++; 
                     gamestatus.state = "end";
-                    endButtons();
+                    endButtons(firstPlayer, secondPlayer);
                     return gamestatus.state;
                 }   
             }    
@@ -176,7 +176,7 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
     }
 }
 
-const endButtons = () => {
+const endButtons = (firstPlayer, secondPlayer) => {
     const div = document.createElement("div");
     document.body.appendChild(div);
     div.className = "endButtons";
@@ -191,16 +191,26 @@ const endButtons = () => {
             btn.className = "restart"
         }
     }
-    buttonFunctionality();
+    buttonFunctionality(firstPlayer, secondPlayer, div);
 }
 
-const buttonFunctionality = () => {
+const buttonFunctionality = (firstPlayer, secondPlayer, div) => {
     const playAgBtn = document.querySelector(".playAgain");
     playAgBtn.addEventListener("click", () => {
+        gameBoard(div, firstPlayer, secondPlayer);
+        boardClear();
         console.log(playAgBtn);
     })
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
         console.log(restartBtn);
     })
+}
+
+const boardClear = () => {
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[i].length; j++){
+            board[i][j] = '';
+        }
+    }
 }
