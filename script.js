@@ -197,7 +197,7 @@ const endButtons = (firstPlayer, secondPlayer) => {
 const buttonFunctionality = (firstPlayer, secondPlayer, div) => {
     const playAgBtn = document.querySelector(".playAgain");
     playAgBtn.addEventListener("click", () => {
-        gameBoard(div, firstPlayer, secondPlayer);
+        //gameBoard(div, firstPlayer, secondPlayer);
         boardClear();
         console.log(playAgBtn);
     })
@@ -208,9 +208,18 @@ const buttonFunctionality = (firstPlayer, secondPlayer, div) => {
 }
 
 const boardClear = () => {
+    let table = document.querySelector(".mainTable")
+    for(let i = 0; i < table.childElementCount; i++){
+        for(let j = 0; j < table.childNodes[i].childElementCount; j++){
+            table.childNodes[i].childNodes[j].textContent = ''
+        }
+    }
+    
     for(let i = 0; i < board.length; i++){
         for(let j = 0; j < board[i].length; j++){
             board[i][j] = '';
         }
     }
+
+
 }
