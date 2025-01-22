@@ -160,13 +160,13 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                     firstPlayer.score++;
                     console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
-                    endButtons(firstPlayer, secondPlayer);
+                    endButtons(firstPlayer, secondPlayer, gamestatus);
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
-                    console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     secondPlayer.score++; 
+                    console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     gamestatus.state = "end";
-                    endButtons(firstPlayer, secondPlayer);
+                    endButtons(firstPlayer, secondPlayer, gamestatus);
                     return gamestatus.state;
                 }   
             }    
@@ -176,7 +176,7 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
     }
 }
 
-const endButtons = (firstPlayer, secondPlayer) => {
+const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
     const div = document.createElement("div");
     document.body.appendChild(div);
     div.className = "endButtons";
@@ -191,15 +191,16 @@ const endButtons = (firstPlayer, secondPlayer) => {
             btn.className = "restart"
         }
     }
-    buttonFunctionality(firstPlayer, secondPlayer, div);
+    buttonFunctionality(firstPlayer, secondPlayer, div, gamestatus);
 }
 
-const buttonFunctionality = (firstPlayer, secondPlayer, div) => {
+const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
     const playAgBtn = document.querySelector(".playAgain");
     playAgBtn.addEventListener("click", () => {
         //gameBoard(div, firstPlayer, secondPlayer);
         boardClear();
-        console.log(playAgBtn);
+        //console.log(playAgBtn);
+        return gamestatus.state = "ongoing";
     })
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
