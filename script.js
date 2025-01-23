@@ -214,7 +214,7 @@ const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
         const body = document.body
-        for(let i = 0; i < body.childElementCount; i++){
+        for(let i = 1; i < body.childElementCount; i++){
             body.removeChild(body.children[2])
         }
         playerForm.style.display = "initial";
