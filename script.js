@@ -1,8 +1,13 @@
 
 //creating gameboard
 
+const createForm = () => {
+
+}
+
 const submitBtn = document.querySelector("#submitBtn");
 const playerForm = document.querySelector("#playerForm");
+const welcomeDiv = document.querySelector("#welcome");
 
 const createFirstP = (playerName) => {
     const name = playerName;
@@ -19,20 +24,23 @@ const createSecondP = (playerName) => {
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
+        getPlayers();
+
+    })
+
+const getPlayers = () => {
     const firstInput = document.querySelector("#firstPlayer");
     const secondInput = document.querySelector("#secondPlayer");
-    const welcomeDiv = document.querySelector("#welcome");
     
     if(firstInput.value != '' && secondInput.value != ''){
         const playerOne = createFirstP(firstInput.value)
         const playerTwo = createSecondP(secondInput.value)
         const div = document.createElement("div");
         gameBoard(div, playerOne, playerTwo);
-        document.body.removeChild(playerForm);
-        document.body.removeChild(welcomeDiv);
-
-    } 
-})
+        playerForm.style.display = "none";
+        welcomeDiv.style.display = "none";
+    }
+}
 
 
 
@@ -115,6 +123,7 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
                     boardPush();
                     roundCheck--
                 } else if (gamestatus.state === "end"){
+                    roundCheck = 0;
                     return;
                 }
             }        
@@ -204,7 +213,13 @@ const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
     })
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
-        console.log(restartBtn);
+        const body = document.body
+        for(let i = 0; i < body.childElementCount; i++){
+            body.removeChild(body.children[2])
+        }
+        playerForm.style.display = "initial";
+        welcomeDiv.style.display = "initial";
+        return gamestatus.state = "ongoing";
     })
 }
 
