@@ -202,11 +202,11 @@ const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
                 btn.className = "restart"
             }
         }
-        buttonFunctionality(firstPlayer, secondPlayer, div, gamestatus);
+        buttonFunctionality(body, gamestatus);
     }   
 }
 
-const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
+const buttonFunctionality = (body, gamestatus) => {
     const playAgBtn = document.querySelector(".playAgain");
     playAgBtn.addEventListener("click", () => {
         //gameBoard(div, firstPlayer, secondPlayer);
