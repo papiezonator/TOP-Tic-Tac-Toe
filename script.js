@@ -187,20 +187,23 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
 
 const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
     const div = document.createElement("div");
+    const body = document.body;
     document.body.appendChild(div);
     div.className = "endButtons";
-    for(let i = 0; i < 2; i++){
-        const btn = document.createElement("button");
-        div.appendChild(btn);
-        if(i != 1){
-            btn.textContent = "Play again"
-            btn.className = "playAgain"
-        } else {
-            btn.textContent = "Restart"
-            btn.className = "restart"
+    if(body.childElementCount === 4){
+        for(let i = 0; i < 2; i++){
+            const btn = document.createElement("button");
+            div.appendChild(btn);
+            if(i != 1){
+                btn.textContent = "Play again"
+                btn.className = "playAgain"
+            } else {
+                btn.textContent = "Restart"
+                btn.className = "restart"
+            }
         }
-    }
-    buttonFunctionality(firstPlayer, secondPlayer, div, gamestatus);
+        buttonFunctionality(firstPlayer, secondPlayer, div, gamestatus);
+    }   
 }
 
 const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
@@ -213,7 +216,7 @@ const buttonFunctionality = (firstPlayer, secondPlayer, div, gamestatus) => {
     })
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
-        const body = document.body
+        
         for(let i = 1; i < body.childElementCount; i++){
             body.removeChild(body.children[2])
         }
