@@ -1,5 +1,5 @@
 
-//creating gameboard
+//creating gameboard    
 
 const submitBtn = document.querySelector("#submitBtn");
 const playerForm = document.querySelector("#playerForm");
@@ -35,9 +35,16 @@ const getPlayers = () => {
         gameBoard(div, playerOne, playerTwo);
         playerForm.style.display = "none";
         welcomeDiv.style.display = "none";
+        setPlayers(playerOne, playerTwo)
     }
+
 }
 
+const setPlayers = (playerOne, playerTwo) => {
+    let playerName = document.querySelectorAll(".playerName")
+    playerName[0].textContent = playerOne.name
+    playerName[1].textContent = playerTwo.name
+}
 
 
 
@@ -184,7 +191,6 @@ const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
     const body = document.body;
     document.body.appendChild(div);
     div.className = "endButtons";
-    if(body.childElementCount === 4){
         for(let i = 0; i < 2; i++){
             const btn = document.createElement("button");
             div.appendChild(btn);
@@ -197,7 +203,7 @@ const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
             }
         }
         buttonFunctionality(body, gamestatus);
-    }   
+      
     return;
 }
 
@@ -211,9 +217,8 @@ const buttonFunctionality = (body, gamestatus) => {
     })
     const restartBtn = document.querySelector(".restart");
     restartBtn.addEventListener("click", () => {
-        
         for(let i = 1; i < body.childElementCount; i++){
-            body.removeChild(body.children[2])
+            body.removeChild(body.children[3])
         }
         playerForm.style.display = "initial";
         welcomeDiv.style.display = "initial";
