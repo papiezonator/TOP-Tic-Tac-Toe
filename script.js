@@ -21,7 +21,8 @@ const createSecondP = (playerName) => {
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
         getPlayers();
-
+        const scoreboard = document.querySelector("#scoreboard");
+        scoreboard.style.visibility = "visible";
     })
 
 const getPlayers = () => {
@@ -36,6 +37,8 @@ const getPlayers = () => {
         playerForm.style.display = "none";
         welcomeDiv.style.display = "none";
         setPlayers(playerOne, playerTwo)
+        firstInput.value = "";
+        secondInput.value = "";
     }
 
 }
@@ -222,10 +225,12 @@ const buttonFunctionality = (body, gamestatus) => {
         return gamestatus.state = "ongoing";
     })
     const restartBtn = document.querySelector(".restart");
+    const scoreboard = document.querySelector("#scoreboard")
     restartBtn.addEventListener("click", () => {
         for(let i = 1; i < body.childElementCount; i++){
             body.removeChild(body.children[3])
         }
+        scoreboard.style.visibility = "hidden";
         playerForm.style.display = "initial";
         welcomeDiv.style.display = "initial";
         return gamestatus.state = "ongoing";
