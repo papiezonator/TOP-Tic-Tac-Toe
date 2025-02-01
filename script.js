@@ -228,7 +228,7 @@ const buttonFunctionality = (body, gamestatus) => {
     const scoreboard = document.querySelector("#scoreboard")
     restartBtn.addEventListener("click", () => {
         for(let i = 1; i < body.childElementCount; i++){
-            body.removeChild(body.children[3])
+            body.removeChild(body.children[body.childElementCount-1])
         }
         scoreboard.style.visibility = "hidden";
         playerForm.style.display = "initial";
