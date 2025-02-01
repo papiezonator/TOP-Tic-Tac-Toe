@@ -41,9 +41,12 @@ const getPlayers = () => {
 }
 
 const setPlayers = (playerOne, playerTwo) => {
-    let playerName = document.querySelectorAll(".playerName")
-    playerName[0].textContent = playerOne.name
-    playerName[1].textContent = playerTwo.name
+    let playerScores = document.querySelectorAll(".playerScore");
+    let playerName = document.querySelectorAll(".playerName");
+    playerName[0].textContent = playerOne.name;
+    playerScores[0].textContent = playerOne.score;
+    playerName[1].textContent = playerTwo.name;
+    playerScores[1].textContent = playerTwo.score;
 }
 
 
@@ -139,6 +142,7 @@ function playRound(firstPlayer, secondPlayer, gamestatus){
 
 function gameWin(firstPlayer, secondPlayer, gamestatus){
     //possible winning combinations
+    const players = document.querySelectorAll(".playerScore")
     if(gamestatus.state != "end"){
         let arr = [
             [0, 1, 2],
@@ -170,11 +174,13 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                 } 
                 if(test.includes(firstPlayer.mark.toUpperCase()) && !test.includes(secondPlayer.mark.toUpperCase()) && !test.includes('')){
                     firstPlayer.score++;
+                    players[0].textContent = firstPlayer.score
                     console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
                     secondPlayer.score++; 
+                    players[1].textContent = secondPlayer.score
                     console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     gamestatus.state = "end";
                     return gamestatus.state;
