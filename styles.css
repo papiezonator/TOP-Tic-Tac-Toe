@@ -1,7 +1,7 @@
 .item {
     height: 25vh;
     width: 25vh;
-    font-size: 10rem;
+    font-size: 12em;
     letter-spacing: 0px;
 }
 
@@ -12,5 +12,17 @@
 
 body{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scoreboard{
+    display: flex;
+    flex-direction: row;
+    visibility: hidden;
+}
+
+#player1, #player2 {
+    display: flex;
+    flex-direction: row;
 }
