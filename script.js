@@ -93,7 +93,7 @@ function gameplay(playerOne, playerTwo){
     let gamestatus = {state: "ongoing"};
     //the actual gameplay
     playRound(firstPlayer, secondPlayer, gamestatus);
-        
+    endButtons(firstPlayer, secondPlayer, gamestatus);    
 }
 
 function playRound(firstPlayer, secondPlayer, gamestatus){
@@ -169,13 +169,11 @@ function gameWin(firstPlayer, secondPlayer, gamestatus){
                     firstPlayer.score++;
                     console.log(`Congratulations ${firstPlayer.name}, you won! Your score is ${firstPlayer.score}`);
                     gamestatus.state = "end";
-                    endButtons(firstPlayer, secondPlayer, gamestatus);
                     return gamestatus.state;
                 } else if(test.includes(secondPlayer.mark.toUpperCase()) && !test.includes(firstPlayer.mark.toUpperCase()) && !test.includes('')){
                     secondPlayer.score++; 
                     console.log(`Congratulations ${secondPlayer.name}, you won! Your score is ${secondPlayer.score}`);
                     gamestatus.state = "end";
-                    endButtons(firstPlayer, secondPlayer, gamestatus);
                     return gamestatus.state;
                 }   
             }    
