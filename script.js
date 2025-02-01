@@ -1,10 +1,6 @@
 
 //creating gameboard
 
-const createForm = () => {
-
-}
-
 const submitBtn = document.querySelector("#submitBtn");
 const playerForm = document.querySelector("#playerForm");
 const welcomeDiv = document.querySelector("#welcome");
@@ -202,6 +198,7 @@ const endButtons = (firstPlayer, secondPlayer, gamestatus) => {
         }
         buttonFunctionality(body, gamestatus);
     }   
+    return;
 }
 
 const buttonFunctionality = (body, gamestatus) => {
@@ -237,6 +234,5 @@ const boardClear = () => {
             board[i][j] = '';
         }
     }
-
-
+    return;
 }
