@@ -231,8 +231,8 @@ const buttonFunctionality = (body, gamestatus) => {
             body.removeChild(body.children[body.childElementCount-1])
         }
         scoreboard.style.visibility = "hidden";
-        playerForm.style.display = "initial";
-        welcomeDiv.style.display = "initial";
+        playerForm.style.display = "flex";
+        welcomeDiv.style.display = "flex";
         return gamestatus.state = "ongoing";
     })
 }
