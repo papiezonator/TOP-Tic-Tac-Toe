@@ -81,6 +81,8 @@ body{
     grid-template-columns: 40% 20% 40%;
     grid-template-rows: 100%;
     width: 75vh;
+    height: 15vh;
+    margin-top: 0vh;
     /*visibility: hidden;*/
 }
 
@@ -105,5 +107,24 @@ body{
     font-size: 2em;
     width: 20vh;
     height: 15vh;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
+}
+
+.endButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vh;
+}
+
+.playAgain, .restart {
+    font-size: 1.2em;
+    background-color: red;
+    border-top: 2px solid rgb(158, 31, 31);
+    border-left: 2px solid rgb(158, 31, 31);
+    border-bottom: 2px solid rgb(255, 137, 137);
+    border-right: 2px solid rgb(255, 137, 137);
+    width: 18vh;
+    height: 6vh;
+    margin-top: 3vh;
 }
