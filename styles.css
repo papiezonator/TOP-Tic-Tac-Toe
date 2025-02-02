@@ -2,11 +2,30 @@
     font-family: "Press Start 2P", serif;
     font-weight: 400;
     font-style: normal;
+    color: white;
   }
+
+body {
+    background-color: black;
+}
 
 #welcome {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#welcome > h1 {
+    font-size: 5em;
+}
+
+#submitBtn {
+    background-color: red;
+    border-top: 2px solid rgb(158, 31, 31);
+    border-left: 2px solid rgb(158, 31, 31);
+    border-bottom: 2px solid rgb(255, 137, 137);
+    border-right: 2px solid rgb(255, 137, 137);
 }
 
 .item {
