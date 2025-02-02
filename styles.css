@@ -43,8 +43,15 @@ body {
     align-items: center;
 }
 
-#firstPlayer, #secondPlayer {
+#firstWrapper, #secondWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin-top: 2vh;
+}
+
+#firstPlayer, #secondPlayer {
     background-color: black;
     width: 10vh;
 }
